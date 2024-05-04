@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
 /* RESET */
 
 /* makes sizing simpler */
@@ -21,12 +23,14 @@
 
 html {
   color-scheme: dark light;
+  font-size: 112.5%; /* 1rem = 18px */
 }
 
 /* min body height */
 
 body {
   min-height: 100vh;
+  font-family: var(--ff-body);
 }
 
 /* responsive images/videos */
@@ -36,4 +40,154 @@ svg,
 video {
   display: block;
   max-width: 100%;
+}
+
+/* VARIABLES */
+
+:root {
+  /* COLORS */
+  --clr-primary: hsl(220, 98%, 61%);
+  --clr-neutral-200: hsl(0, 0%, 98%);
+  --clr-neutral-400: hsl(236, 33%, 92%);
+  --clr-neutral-600: hsl(236, 9%, 61%);
+  --clr-neutral-800: hsl(235, 19%, 35%);
+
+  /* GRADIENT */
+  --bg-check-gradient: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
+  /* FONT-SIZE */
+  --fs-title: 2rem;
+
+  /* FONT WEIGHT */
+  --fw-regular: 400;
+  --fw-bold: 700;
+  --ff-body: "Josefin Sans", sans-serif;
+}
+
+/* WRAPPER */
+
+.outer-wrapper {
+  position: relative;
+  min-height: 70vh;
+  background-color: var(--clr-neutral-200);
+}
+
+.main-wrapper {
+  margin-top: 9rem;
+  padding: 2rem 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 100vh;
+  min-width: 530px;
+}
+
+/* HEADER */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  .title {
+    color: var(--clr-neutral-200);
+    font-size: 2.5rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: 1.2rem;
+    margin-top: 0.5rem;
+  }
+  .theme {
+    height: 1.5rem;
+  }
+  
+}
+
+
+/* CONTAINER INPUT */
+
+.input-container {
+  background-color: var(--clr-neutral-200);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  margin-top: 1.5rem;
+
+  .input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    color: var(--clr-neutral-800);
+  }
+  .input::placeholder {
+    color: var(--clr-neutral-600);
+  }
+}
+
+.check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--clr-neutral-400);
+}
+
+/* CONTAINER LIST FILTER */
+
+.container-list-filter {
+  margin-top: 1.2rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  border-radius: 0.5rem;
+}
+
+/* LIST */
+
+.list {
+  background-color: var(--clr-neutral-200);
+  list-style-type: none;
+  border-radius: 0.4rem;
+  .item-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  li {
+    color: var(--clr-neutral-800);
+    font-size: 1rem;
+  }
+}
+
+hr {
+  height: 1px;
+  background-color: var(--clr-neutral-400);
+  border: none;
+}
+
+/* FILTER */
+
+.filter {
+  background-color: var(--clr-neutral-200);
+  color: var(--clr-neutral-600);
+  padding: 1rem;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0.4rem;
+  .inner-filter {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.drag-text {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--clr-neutral-600);
 }
