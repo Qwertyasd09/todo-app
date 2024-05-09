@@ -1,5 +1,5 @@
 import { Check } from "./icons/Check"
-import { TodoItem } from "../../App"
+import { TodoItem } from "../App";
 import { Cross } from "./icons/Cross"
 import { Draggable } from "@hello-pangea/dnd"
 

@@ -1,12 +1,12 @@
-import { MainWrapper } from "./assets/components/MainWrapper"
-import { OuterWrapper } from "./assets/components/OuterWrapper"
-import { Header } from "./assets/components/Header"
-import { Input } from "./assets/components/Input"
-import { List } from "./assets/components/List"
-import { Filter } from "./assets/components/Filter"
-import { ContainerListFilter } from "./assets/components/ContainerListFilter"
-import { DragAndDropText } from "./assets/components/DragAndDropText"
-import { useDivWidth } from "./assets/components/hooks/useSizeWindow"
+import { MainWrapper } from "./components/MainWrapper"
+import { OuterWrapper } from "./components/OuterWrapper"
+import { Header } from "./components/Header"
+import { Input } from "./components/Input"
+import { List } from "./components/List"
+import { Filter } from "./components/Filter"
+import { ContainerListFilter } from "./components/ContainerListFilter"
+import { DragAndDropText } from "./components/DragAndDropText"
+import { useDivWidth } from "./components/hooks/useSizeWindow"
 import {  useRef, useState, FormEvent } from "react"
 import { DragDropContext } from "@hello-pangea/dnd"
 
@@ -19,7 +19,6 @@ export interface TodoItem {
 function App() {
 
   const { divRef, width } = useDivWidth()
-
   const [todos, setTodos] = useState<TodoItem[]>([
     {todo: "Complete online JavaScript course", id: crypto.randomUUID(), done: true},
     {todo: "Jog around the park 3x", id: crypto.randomUUID(), done: false},
@@ -48,7 +47,6 @@ function App() {
   const allRef = useRef<HTMLLIElement | null>(null)
   const activeRef = useRef<HTMLLIElement | null>(null)
   const completeRef = useRef<HTMLLIElement | null>(null)
-
   const handleFilterSelect = (e: React.MouseEvent<HTMLLIElement>) => {
     const currentOption = e.currentTarget.getAttribute("data-choice");
     switch(currentOption) {
@@ -135,6 +133,27 @@ function App() {
     setTodos(newOrder);
   }
 
+  const handleDelete = (e:  React.MouseEvent<HTMLDivElement>) => {
+    const currentListItem = e.target as HTMLDivElement
+    const deletedTodoId = currentListItem.getAttribute("id");
+    setTodos(todos.filter((todo) => (todo.id != deletedTodoId)))
+  }
+
+  const handleCheck = (e: React.MouseEvent<HTMLDivElement | SVGSVGElement>): void => {
+    const checkedTodo = e.currentTarget.getAttribute("id");
+    e.stopPropagation()
+    setTodos(todos.map((todo) => {
+      if (todo.id === checkedTodo) {
+        return {
+          ...todo,
+          done: !todo.done
+        }
+      } else {
+        return todo;
+      }
+    }))
+  }
+
   return (
     <OuterWrapper divRef={divRef} width={width}>
       <MainWrapper>
@@ -142,7 +161,7 @@ function App() {
         <Input handleSubmit={handleSubmit} inputField={inputField}/>
         <ContainerListFilter>
           <DragDropContext onDragEnd={onDragEnd}>
-            <List filteredTodos={filteredTodos} todos={todos} setTodos={setTodos}/> 
+            <List handleCheck={handleCheck} handleDelete={handleDelete} filteredTodos={filteredTodos}/> 
           </DragDropContext>
           <Filter activeItems={currentItemCount(todos)} handleFilterSelect={handleFilterSelect} handleClearCompleted={handleClearCompleted} getRef={getRef} width={width}/>
         </ContainerListFilter>
