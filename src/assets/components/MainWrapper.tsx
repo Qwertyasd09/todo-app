@@ -5,7 +5,6 @@ interface MainWrapperProps {
 }
 
 export const MainWrapper = ({ children }: MainWrapperProps) => {
-
   return (
     <div className="main-wrapper">
       { children }

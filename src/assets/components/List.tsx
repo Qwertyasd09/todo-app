@@ -1,36 +1,54 @@
-export const List = () => {
+import { TodoItem } from "../../App";
+import { ListItem } from "./ListItem";
+import { Droppable } from "@hello-pangea/dnd";
+
+interface ListProps {
+  todos: TodoItem[];
+  setTodos: React.Dispatch<React.SetStateAction<TodoItem[]>>;
+  filteredTodos: TodoItem[];
+}
+ 
+export const List = ({ todos, setTodos, filteredTodos }: ListProps) => {
+  
+  const handleDelete = (e:  React.MouseEvent<HTMLDivElement>) => {
+    const currentListItem = e.target as HTMLDivElement
+    const deletedTodoId = currentListItem.getAttribute("id");
+    setTodos(todos.filter((todo) => (todo.id != deletedTodoId)))
+  }
+
+  const handleCheck = (e: React.MouseEvent<HTMLDivElement | SVGSVGElement>): void => {
+    const checkedTodo = e.currentTarget.getAttribute("id");
+    e.stopPropagation()
+    setTodos(todos.map((todo) => {
+      if (todo.id === checkedTodo) {
+        return {
+          ...todo,
+          done: !todo.done
+        }
+      } else {
+        return todo;
+      }
+    }))
+  }
+
+  
+
+
   return (
-    <ul className="list">
-        <div className="item-container">
-            <div className="check"></div>
-            <li>Complete online JavaScript course</li>
-        </div>
-        <hr />
-        <div className="item-container">
-            <div className="check"></div>
-            <li>Jog around the park 3x</li>
-        </div>
-        <hr />
-        <div className="item-container">
-            <div className="check"></div>
-            <li>10 minutes meditation</li>
-        </div>
-        <hr />
-        <div className="item-container">
-            <div className="check"></div>
-            <li>Read for 1 hour</li>
-        </div>
-        <hr />
-        <div className="item-container">
-            <div className="check"></div>
-            <li>Pick up groceries</li>
-        </div>
-        <hr />
-        <div className="item-container">
-            <div className="check"></div>
-            <li>Complete Todo App on Frontend Mentor</li>
-        </div>
-       <hr /> 
-    </ul>
+    <Droppable droppableId="column-drop">{(provided) => (
+      <ul ref={provided.innerRef} {...provided.droppableProps} className="list">
+        {filteredTodos.map((todo, index) => (
+          <ListItem
+            key={todo.id}
+            todo={todo}
+            handleCheck={handleCheck}
+            handleDelete={handleDelete} 
+            index={index}
+          />
+        ))}
+        {provided.placeholder}
+      </ul>
+    )}
+    </Droppable>
   )
 }
