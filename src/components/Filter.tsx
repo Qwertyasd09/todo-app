@@ -1,6 +1,6 @@
-import { useGlobalContext } from './hooks/useGlobalContext';
-import { TodoActions, TodoKind } from './types/types';
-import { Refs } from './types/types';
+import { useGlobalContext } from '../hooks/useGlobalContext';
+import { TodoActions, TodoKind } from '../types/types';
+import { Refs } from '../types/types';
 
 interface FilterProps {
   activeItems: number;

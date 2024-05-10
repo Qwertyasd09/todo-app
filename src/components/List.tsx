@@ -1,7 +1,6 @@
 import { ListItem } from './ListItem';
 import { Droppable } from '@hello-pangea/dnd';
-import { TodoItem } from './types/types';
-import { TodoActions } from './types/types';
+import { TodoItem, TodoActions } from '../types/types';
 
 interface ListProps {
   filteredTodos: TodoItem[];

@@ -1,5 +1,5 @@
-import { TodoActions } from './types/types';
-import { TodoKind } from './types/types';
+import { TodoActions } from '../types/types';
+import { TodoKind } from '../types/types';
 import { useState } from 'react';
 import { useRef } from 'react';
 

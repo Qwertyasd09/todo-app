@@ -1,4 +1,4 @@
-import { TodoActions, TodoKind } from '../types/types';
+import { TodoActions, TodoKind } from '../../types/types';
 
 interface CheckProps {
   color?: string;

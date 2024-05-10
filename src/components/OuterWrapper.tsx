@@ -2,8 +2,8 @@ import bgDesktopLigth from '../assets/images/bg-desktop-light.jpg';
 import bgMobileLigth from '../assets/images/bg-mobile-light.jpg';
 import bgDesktopDark from '../assets/images/bg-desktop-dark.jpg';
 import bgMobileDark from '../assets/images/bg-mobile-dark.jpg';
-import { useTheme } from './hooks/contextTheme';
-import { WrapperProps } from './types/types';
+import { useTheme } from '../hooks/contextTheme';
+import { WrapperProps } from '../types/types';
 
 interface OuterWrapperProps extends WrapperProps {
   divRef: React.MutableRefObject<HTMLDivElement | null>;

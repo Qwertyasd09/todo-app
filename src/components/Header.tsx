@@ -1,4 +1,4 @@
-import { useTheme } from './hooks/contextTheme';
+import { useTheme } from '../hooks/contextTheme';
 import moonSvg from '../assets/images/icon-moon.svg';
 import sunSvg from '../assets/images/icon-sun.svg';
 

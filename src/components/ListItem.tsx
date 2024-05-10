@@ -1,8 +1,7 @@
 import { Check } from './icons/Check';
-import { TodoItem, TodoKind } from './types/types';
+import { TodoItem, TodoKind, TodoActions } from '../types/types';
 import { Cross } from './icons/Cross';
 import { Draggable } from '@hello-pangea/dnd';
-import { TodoActions } from './types/types';
 
 interface ListItemProps {
   todo: TodoItem;

@@ -1,8 +1,8 @@
-import { TodoItem } from '../components/types/types';
-import { FilterSelect } from '../components/types/types';
-import { Refs } from '../components/types/types';
-import { TodoActions } from '../components/types/types';
-import { TodoKind } from '../components/types/types';
+import { TodoItem } from '../types/types';
+import { FilterSelect } from '../types/types';
+import { Refs } from '../types/types';
+import { TodoActions } from '../types/types';
+import { TodoKind } from '../types/types';
 
 export const currentItemCount = (listTodos: TodoItem[]) => {
   return listTodos.filter((todo) => todo.done === false).length;

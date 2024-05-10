@@ -6,12 +6,12 @@ import { List } from './components/List';
 import { Filter } from './components/Filter';
 import { ContainerListFilter } from './components/ContainerListFilter';
 import { DragAndDropText } from './components/DragAndDropText';
-import { useDivWidth } from './components/hooks/useSizeWindow';
+import { useDivWidth } from './hooks/useSizeWindow';
 import { useRef, useState, useReducer } from 'react';
 import { DragDropContext } from '@hello-pangea/dnd';
-import { useGlobalContext } from './components/hooks/useGlobalContext';
-import { TodoItem } from './components/types/types';
-import { TodoKind } from './components/types/types';
+import { useGlobalContext } from './hooks/useGlobalContext';
+import { TodoItem } from './types/types';
+import { TodoKind } from './types/types';
 
 function App() {
   const { reducer, getFilteredTodos, currentItemCount } = useGlobalContext();

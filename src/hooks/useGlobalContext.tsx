@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import * as functions from '../../utils/utils';
+import * as functions from '../utils/utils'
 import { WrapperProps } from '../types/types';
 
 export const GlobalContext = createContext(functions);
