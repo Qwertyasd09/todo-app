@@ -1,10 +1,6 @@
-import { ReactNode } from "react"
+import { WrapperProps } from "./types/types"
 
-interface ContainerListFilterProps {
-    children: ReactNode
-}
-
-export const ContainerListFilter = ({ children }: ContainerListFilterProps) => {
+export const ContainerListFilter = ({ children }: WrapperProps) => {
   return (
     <div className="container-list-filter">
         { children }

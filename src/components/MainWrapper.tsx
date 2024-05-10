@@ -1,10 +1,6 @@
-import { ReactNode } from "react";
+import { WrapperProps } from "./types/types";
 
-interface MainWrapperProps {
-    children: ReactNode;
-}
-
-export const MainWrapper = ({ children }: MainWrapperProps) => {
+export const MainWrapper = ({ children }: WrapperProps) => {
   return (
     <div className="main-wrapper">
       { children }

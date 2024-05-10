@@ -1,14 +1,16 @@
+import { TodoActions, TodoKind } from "../types/types";
+
 interface CheckProps {
   color?: string;
-  handleCheck: (e: React.MouseEvent<SVGSVGElement>) => void;
-  id: string
+  id: string;
+  dispatch: React.Dispatch<TodoActions>;
 } 
 
-export const Check = ({ color = "#FFF", handleCheck, id } : CheckProps) => {
+export const Check = ({ color = "#FFF", dispatch, id } : CheckProps) => {
   return (
     <svg className="svg-check"
         id={id}
-        onClick={handleCheck}
+        onClick={(event) => dispatch({type: TodoKind.CHECK, payload: event})}
         xmlns="http://www.w3.org/2000/svg" 
         width="11" 
         height="9">

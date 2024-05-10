@@ -1,14 +1,18 @@
+import { useGlobalContext } from "./hooks/useGlobalContext";
+import { TodoActions, TodoKind } from "./types/types";
+import { Refs } from "./types/types";
+
 interface FilterProps {
-  handleFilterSelect: (e: React.MouseEvent<HTMLLIElement>) => void;
-  getRef: (option: string) => React.MutableRefObject<HTMLLIElement | null> | undefined;
   activeItems: number;
-  handleClearCompleted: () => void;
   width?: number;
+  dispatch: React.Dispatch<TodoActions>;
+  setFilterStatus: React.Dispatch<React.SetStateAction<"all" | "active" | "complete">>;
+  Refs: Refs;
 }
 
-export const Filter = ({ handleFilterSelect, getRef, activeItems, handleClearCompleted, width }: FilterProps) => {
+export const Filter = ({ activeItems, width, dispatch, setFilterStatus, Refs }: FilterProps) => {
   const options: string[] = ["All", "Active", "Complete"]
-  
+  const { handleFilterSelect, getRef } = useGlobalContext();
   if (width! > 768) {
     return (
       <div className="filter">
@@ -16,17 +20,17 @@ export const Filter = ({ handleFilterSelect, getRef, activeItems, handleClearCom
           <ul className="inner-filter">
             {options.map((option: string) => (
               <li 
-                onClick={handleFilterSelect} 
+                onClick={(e) => handleFilterSelect(e, {setFilterStatus, Refs})} 
                 key={option} 
                 data-choice={option.toLowerCase()} 
                 className={(option === "All") ? "choices current-choice" : "choices"}
-                ref={getRef(option)}
+                ref={getRef(option, Refs)}
               >
                 {option}
               </li>
             ))}
           </ul>
-          <p onClick={handleClearCompleted} className="choices complete">Clear Completed</p>
+          <p onClick={() => dispatch({type: TodoKind.CLEAR_COMPLETED})} className="choices complete">Clear Completed</p>
       </div>
     )
   } else {
@@ -34,17 +38,17 @@ export const Filter = ({ handleFilterSelect, getRef, activeItems, handleClearCom
       <div className="filter-container">
         <div className="filter top">
           <p>{activeItems} items left</p>
-          <p onClick={handleClearCompleted} className="choices complete">Clear Completed</p>
+          <p onClick={() => dispatch({type: TodoKind.CLEAR_COMPLETED})} className="choices complete">Clear Completed</p>
         </div>
         <div className="filter bottom">
           <ul className="inner-filter">
             {options.map((option: string) => (
               <li 
-                onClick={handleFilterSelect} 
+                onClick={(e) => handleFilterSelect(e, {Refs, setFilterStatus})} 
                 key={option} 
                 data-choice={option.toLowerCase()} 
                 className={(option === "All") ? "choices current-choice" : "choices"}
-                ref={getRef(option)}
+                ref={getRef(option, Refs)}
               >
                 {option}
               </li>

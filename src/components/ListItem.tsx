@@ -1,28 +1,28 @@
 import { Check } from "./icons/Check"
-import { TodoItem } from "../App";
+import { TodoItem, TodoKind } from "./types/types";
 import { Cross } from "./icons/Cross"
 import { Draggable } from "@hello-pangea/dnd"
+import { TodoActions } from "./types/types";
 
 interface ListItemProps {
     todo: TodoItem;
-    handleCheck: (e: React.MouseEvent<HTMLDivElement | SVGSVGElement>) => void;
-    handleDelete: (e: React.MouseEvent<HTMLDivElement>) => void;
     index: number;
+    dispatch: React.Dispatch<TodoActions>;
 }
 
-export const ListItem = ({todo, handleCheck, handleDelete, index}: ListItemProps) => {
+export const ListItem = ({todo, index, dispatch}: ListItemProps) => {
   return (
     <Draggable draggableId={todo.id} index={index}>
         {(provided) => (
             <div className="dragable" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} key={todo.id}>
                 <div className="item-container" key={todo.id} >
-                    <div id={todo.id} onClick={handleCheck} className={"check " + (todo.done ? "done" : "hover")}>
-                        <Check color={todo.done ? "#FFF" : "transparent"} handleCheck={handleCheck} id={todo.id}/>
+                    <div id={todo.id} onClick={(event) => dispatch({type: TodoKind.CHECK, payload: event})} className={"check " + (todo.done ? "done" : "hover")}>
+                        <Check color={todo.done ? "#FFF" : "transparent"} dispatch={dispatch} id={todo.id}/>
                     </div>
                     <li className={todo.done ? "checked-todo" : undefined}>
                         {todo.todo}
                     </li>
-                    <div className="icon-cross" onClick={handleDelete}>
+                    <div className="icon-cross" onClick={(event) => dispatch({type: TodoKind.DELETE, payload: event})}>
                         <Cross id={todo.id}/>
                     </div>
                 </div>

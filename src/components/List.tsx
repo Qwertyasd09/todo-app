@@ -1,14 +1,14 @@
-import { TodoItem } from "../App";
 import { ListItem } from "./ListItem";
 import { Droppable } from "@hello-pangea/dnd";
+import { TodoItem } from "./types/types";
+import { TodoActions } from "./types/types";
 
 interface ListProps {
   filteredTodos: TodoItem[];
-  handleCheck: (e: React.MouseEvent<HTMLDivElement | SVGSVGElement>) => void;
-  handleDelete: (e: React.MouseEvent<HTMLDivElement>) => void;
+  dispatch: React.Dispatch<TodoActions>;
 }
  
-export const List = ({ filteredTodos, handleCheck, handleDelete }: ListProps) => {
+export const List = ({ dispatch, filteredTodos }: ListProps) => {
 
   return (
     <Droppable droppableId="column-drop">{(provided) => (
@@ -17,8 +17,7 @@ export const List = ({ filteredTodos, handleCheck, handleDelete }: ListProps) =>
           <ListItem
             key={todo.id}
             todo={todo}
-            handleCheck={handleCheck}
-            handleDelete={handleDelete} 
+            dispatch={dispatch}
             index={index}
           />
         ))}
