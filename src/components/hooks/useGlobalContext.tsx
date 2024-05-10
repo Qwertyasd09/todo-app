@@ -6,9 +6,7 @@ export const GlobalContext = createContext(functions);
 export const useGlobalContext = () => useContext(GlobalContext);
 
 const GlobalProvider = ({ children }: WrapperProps) => (
-  <GlobalContext.Provider value={functions}>
-    {children}
-  </GlobalContext.Provider>
+  <GlobalContext.Provider value={functions}>{children}</GlobalContext.Provider>
 );
 
 export default GlobalProvider;

@@ -1,9 +1,5 @@
-import { WrapperProps } from "./types/types"
+import { WrapperProps } from './types/types';
 
 export const ContainerListFilter = ({ children }: WrapperProps) => {
-  return (
-    <div className="container-list-filter">
-        { children }
-    </div>
-  )
-}
+  return <div className="container-list-filter">{children}</div>;
+};

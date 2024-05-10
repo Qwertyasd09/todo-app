@@ -1,23 +1,19 @@
 interface CrossProps {
-    color?: string;
-    id: string;
-} 
+  color?: string;
+  id: string;
+}
 
-export const Cross = ({ color = "#494C6B", id }: CrossProps) => {
+export const Cross = ({ color = '#494C6B', id }: CrossProps) => {
   return (
-    <svg 
-        id={id}
-        xmlns="http://www.w3.org/2000/svg" 
-        width="18" 
-        height="18">
-        <path 
-            fill={color} 
-            fillRule="evenodd" 
-            d="M16.97 0l.708.707L9.546 
+    <svg id={id} xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+      <path
+        fill={color}
+        fillRule="evenodd"
+        d="M16.97 0l.708.707L9.546 
             8.84l8.132 8.132-.707.707-8.132-8.132-8.132 
             8.132L0 16.97l8.132-8.132L0 .707.707 0 
             8.84 8.132 16.971 0z"
-        />
+      />
     </svg>
-  )
-}
+  );
+};
